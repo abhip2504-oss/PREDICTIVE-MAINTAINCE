@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, accuracy_score
 import io
+import os
 
 # LocalStack S3 configuration
 AWS_ENDPOINT_URL = "http://localhost:4566"
@@ -12,8 +13,9 @@ AWS_REGION = "us-east-1"
 AWS_ACCESS_KEY_ID = "test"
 AWS_SECRET_ACCESS_KEY = "test"
 BUCKET_NAME = "factory-data"
-FILE_NAME = "ai4i2020.csv"
-MODEL_NAME = "model.pkl"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FILE_NAME = os.path.join(BASE_DIR, "ai4i2020.csv")
+MODEL_NAME = os.path.join(BASE_DIR, "model.pkl")
 
 def get_s3_client():
     return boto3.client(

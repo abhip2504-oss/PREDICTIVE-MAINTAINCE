@@ -8,8 +8,9 @@ import plotly.graph_objects as go
 from datetime import datetime
 from collections import deque
 
-LOCAL_DIR = "live_data"
-MODEL_NAME = "model.pkl"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOCAL_DIR = os.path.join(BASE_DIR, "live_data")
+MODEL_NAME = os.path.join(BASE_DIR, "model.pkl")
 
 st.set_page_config(
     page_title="Predictive Maintenance",
