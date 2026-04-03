@@ -25,16 +25,13 @@ def get_s3_client():
     )
 
 def train_and_save_model():
-    s3 = get_s3_client()
-    
-    print(f"Downloading {FILE_NAME} from S3 bucket {BUCKET_NAME}...")
+    print(f"Reading local {FILE_NAME}...")
     try:
-        response = s3.get_object(Bucket=BUCKET_NAME, Key=FILE_NAME)
-        csv_content = response['Body'].read()
-        df = pd.read_csv(io.BytesIO(csv_content))
+        df = pd.read_csv(FILE_NAME)
     except Exception as e:
-        print(f"Failed to download data from S3: {e}")
+        print(f"Failed to load data locally: {e}")
         return
+    
 
     print("Data loaded perfectly. Preprocessing...")
     features = ['Air temperature [K]', 'Process temperature [K]', 'Rotational speed [rpm]', 'Torque [Nm]', 'Tool wear [min]']
