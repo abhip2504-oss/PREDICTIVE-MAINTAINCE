@@ -230,6 +230,10 @@ div[data-testid="metric-container"] {
 # ── Load model ──────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
+    if not os.path.exists(MODEL_NAME):
+        import train_model
+        train_model.train_and_save_model()
+        
     if os.path.exists(MODEL_NAME):
         return joblib.load(MODEL_NAME)
     return None
