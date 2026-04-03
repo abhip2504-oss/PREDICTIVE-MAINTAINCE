@@ -10,6 +10,7 @@ from collections import deque
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LOCAL_DIR = os.path.join(BASE_DIR, "live_data")
+# Force Streamlit to bust cache
 MODEL_NAME = os.path.join(BASE_DIR, "model.pkl")
 
 st.set_page_config(
