@@ -11,9 +11,10 @@ AWS_REGION = "us-east-1"
 AWS_ACCESS_KEY_ID = "test"
 AWS_SECRET_ACCESS_KEY = "test"
 BUCKET_NAME = "factory-data"
-FILE_NAME = "ai4i2020.csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FILE_NAME = os.path.join(BASE_DIR, "ai4i2020.csv")
 STREAM_PREFIX = "live_stream/"
-LOCAL_DIR = "live_data"
+LOCAL_DIR = os.path.join(BASE_DIR, "live_data")
 
 def get_s3_client():
     return boto3.client(

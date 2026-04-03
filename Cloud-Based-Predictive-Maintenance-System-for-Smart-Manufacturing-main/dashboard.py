@@ -245,6 +245,16 @@ if model is None:
     st.error(f"Model `{MODEL_NAME}` not found. Run `train_model.py` first.")
     st.stop()
 
+import subprocess
+import sys
+
+@st.cache_resource
+def start_simulator():
+    script_path = os.path.join(BASE_DIR, "sensor_stream.py")
+    return subprocess.Popen([sys.executable, script_path])
+
+start_simulator()
+
 # ── Session state ────────────────────────────────────────────────────────────
 if 'history'            not in st.session_state: st.session_state.history            = deque(maxlen=50)
 if 'alert_log'          not in st.session_state: st.session_state.alert_log          = []
